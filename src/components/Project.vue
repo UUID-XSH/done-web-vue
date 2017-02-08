@@ -3,7 +3,7 @@
 
     <ul class="pure-menu-list">
       <li class="pure-menu-item"><a v-on:click="goPage" class="pure-menu-link">今日目标</a></li>
-      <li class="pure-menu-item"><a href="#" class="pure-menu-link">近7日</a></li>
+      <li class="pure-menu-item"><a v-on:click="clock" class="pure-menu-link">近7日</a></li>
       <li class="pure-menu-heading">项目列表</li>
       <div></div>
 
@@ -19,7 +19,6 @@
 
 </style>
 <script>
-
   import Bus from '../Bus.js'
 
   export default{
@@ -34,7 +33,18 @@
     methods: {
       goPage: function () {
         Bus.$emit('msg', '克里斯，关下门') ;// 使用$emit方法创建一个键值对
+      },
+
+      clock: function () {
+        this.$http.get('https://www.baidu.com/').then(response => {
+
+          // get body data
+          console.log(response.body)
+        }, response => {
+          // error callback
+        });
       }
+
     },
   }
 </script>
